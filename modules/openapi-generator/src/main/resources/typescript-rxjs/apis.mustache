@@ -75,6 +75,9 @@ export class {{classname}} extends BaseAPI {
             {{#isBasicBasic}}
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
             {{/isBasicBasic}}
+            {{#isBearerBasic}}
+            ...Authorization : "",
+            {{/isBasicBasic}}
             {{#isApiKey}}
             {{#isKeyInHeader}}
             ...(this.configuration.apiKey && { '{{keyParamName}}': this.configuration.apiKey('{{keyParamName}}') }), // {{name}} authentication
